@@ -12,7 +12,7 @@ exports.createPost = (req, res, next) => {
     let { files } = req;
     let postUrlArr = _.map(files, (currentFile) => {
         return { mUrl: currentFile.location };
-    })
+    });
     var newPost = new PostModel({ media: postUrlArr });
     newPost.save()
         .then(() => {

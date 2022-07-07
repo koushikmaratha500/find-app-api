@@ -14,11 +14,15 @@ const uploadPostsToS3 = multer({
     storage: multerS3({
         s3: s3,
         bucket: s3Config.bucketName,
+        acl: 'public-read',
+        contentType: function (req, file, cb) {
+            cb(null, file.mimetype);
+        },
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
-            cb(null, Date.now().toString())
+            cb(null, `${Date.now().toString()}-${file.originalname}`.trim())
         }
     })
  })
