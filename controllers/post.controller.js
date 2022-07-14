@@ -1,7 +1,7 @@
 const PostModel = require('../models/post.model');
 const _ = require('lodash');
 exports.getAllPosts = (req, res, next) => {
-    PostModel.find()
+    PostModel.find().sort( { createdAt: -1 } )
         .then((response) => {
             res.send(response);
         })
