@@ -7,5 +7,6 @@ const { uploadPostsToS3 } = require('../middlewares/video.middleware');
 // router.post('/createPost',  postCtrl.createPost);
 router.post('/createPost', uploadPostsToS3.array('posts', 6), postCtrl.createPost);
 router.get('/getAllPosts', postCtrl.getAllPosts);
+router.get('/deleteAllPosts', postCtrl.deleteAllPost);
 
 module.exports = router;
