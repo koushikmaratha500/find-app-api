@@ -27,7 +27,8 @@ var options =  {  //mongodb options
   useNewUrlParser: true, useUnifiedTopology: true
 };
 //mongoose connection string
-mongoose.connect('mongodb+srv://rLdBM21:wypdoq-xatweV-2domzy@cluster0.pmnts.mongodb.net/?retryWrites=true&w=majority', options)
+const passwd = encodeURIComponent('devUser1#3!');
+mongoose.connect(`mongodb://devUser:${passwd}@0.0.0.0:28899/devfindApp_db`, options)
         .then(() => console.log('connection successful'))
         .catch((err) => console.error(err));
 
