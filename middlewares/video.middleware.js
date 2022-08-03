@@ -2,6 +2,7 @@ var aws = require('aws-sdk');
 var multer = require('multer');
 var multerS3 = require('multer-s3');
 const {s3Config} = require('../config');
+const _ = require('lodash');
 
 var s3 = new aws.S3({
     accessKeyId: s3Config.accessKeyId,
@@ -22,7 +23,7 @@ const uploadPostsToS3 = multer({
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
-            cb(null, `${Date.now().toString()}-${file.originalname}`.trim())
+            cb(null, `${Date.now().toString()}-${_.replace(_.toLower(file.originalname),'.mov', '.mp4')}`.trim())
         }
     })
  })
